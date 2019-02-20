@@ -59,8 +59,8 @@
         </el-menu>
         <!--导航菜单-折叠后-->
         <ul class="el-menu el-menu-vertical-demo collapsed" v-show="collapsed" ref="menuCollapsed">
-          <li 
-          v-for="(item,index) in $router.options.routes"
+          <li
+            v-for="(item,index) in $router.options.routes"
             v-if="!item.hidden"
             class="el-submenu item"
           >
