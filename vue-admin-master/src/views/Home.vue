@@ -6,13 +6,15 @@
         class="logo"
         :class="collapsed?'logo-collapse-width':'logo-width'"
       >{{collapsed?'':sysName}}</el-col>
-      <el-col :span="10">
+      <el-col :span="6">
         <div class="tools" @click.prevent="collapse">
           <i class="fa fa-align-justify"></i>
         </div>
       </el-col>
-      <el-col :span="4" class="userinfo">
-        <el-dropdown trigger="hover">
+
+      <el-col :span="8" class="userinfo">
+        <span style="padding-left:10px;">中文简体</span>
+        <el-dropdown trigger="hover">        
           <span class="el-dropdown-link userinfo-inner">
             <img :src="this.sysUserAvatar">
             {{sysUserName}}

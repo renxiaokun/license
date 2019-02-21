@@ -3,6 +3,7 @@ import Vue from 'vue'
 import App from './App'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
+import locale from 'element-ui/lib/locale/lang/en'
 //import './assets/theme/theme-green/index.css'
 import VueRouter from 'vue-router'
 import store from './vuex/store'
@@ -13,8 +14,9 @@ import routes from './routes'
 import Mock from './mock'
 Mock.bootstrap();
 import 'font-awesome/css/font-awesome.min.css'
+import i18n from './i18n/i18n'
 
-Vue.use(ElementUI)
+Vue.use(ElementUI,{ locale })
 Vue.use(VueRouter)
 Vue.use(Vuex)
 
@@ -44,6 +46,7 @@ router.beforeEach((to, from, next) => {
 new Vue({
   //el: '#app',
   //template: '<App/>',
+  i18n,
   router,
   store,
   //components: { App }

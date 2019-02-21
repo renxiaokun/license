@@ -1,7 +1,19 @@
 <template>
     <div :style="note" class="loginBg">
-        <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-position="left" label-width="0px" class="demo-ruleForm login-container">
-    <h3 class="title">深澜授权管理系统</h3>
+    <el-col :span="2" style="float:right; margin-top:20px; font-size:16px; ">
+       <el-select v-model="selectValue" @change="langChange" placeholder="请选择" style="width:100px;">
+            <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+                >
+            </el-option>
+        </el-select>
+  </el-col>
+
+    <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-position="left" label-width="0px" class="demo-ruleForm login-container">
+    <h3 class="title">{{$t('message.loginTitle')}}</h3>
     <el-form-item prop="account">
       <el-input type="text" v-model="ruleForm2.account" auto-complete="off" placeholder="账号"></el-input>
     </el-form-item>
@@ -44,10 +56,31 @@
             //{ validator: validaePass2 }
           ]
         },
-        checked: true
+        checked: true,
+        selectValue:'',
+            options:[
+                {
+                value: 'cn',
+                label: '中文'
+                }, {
+                value: 'en',
+                label: 'English'
+                }
+            ]
       };
     },
+     created() {
+        let that = this;
+        console.log(localStorage.lang)
+        that.selectValue = localStorage.lang == undefined?'cn':localStorage.lang
+    },
     methods: {
+      //语言切换
+      langChange(e){
+        // console.log(e)
+        localStorage.setItem('lang',e);
+        this.$i18n.locale = e;
+      },
       handleReset2() {
         this.$refs.ruleForm2.resetFields();
       },
@@ -89,6 +122,9 @@
     width: 100%;
     height: 100%;
     position: absolute;
+  }
+  .bg{
+    background-color: transparent;
   }
   .login-container {
     /*box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);*/
